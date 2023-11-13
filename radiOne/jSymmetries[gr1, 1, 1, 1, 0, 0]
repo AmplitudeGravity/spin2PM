@@ -1,0 +1,10 @@
+{{j[gr1, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, (n4_)?NonPositive, 
+    (n5_)?NonPositive] :> Expand[j[gr1, n1, n2, n3, n4, n5]]}, 
+ {j[gr1, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, (n4_)?NonPositive, 
+    (n5_)?NonPositive] :> Expand[j[gr1, n1, n2, n3, n4, 0]/
+     (-j[gr1, 0, 0, 0, 0, -1])^n5]}, 
+ {j[gr1, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, (n4_)?NonPositive, 
+    (n5_)?NonPositive] :> Expand[j[gr1, n2, n1, n3, n4, n5]]}, 
+ {j[gr1, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, (n4_)?NonPositive, 
+    (n5_)?NonPositive] :> Expand[j[gr1, n2, n1, n3, n4, 0]/
+     (-j[gr1, 0, 0, 0, 0, -1])^n5]}}
