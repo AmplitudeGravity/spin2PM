@@ -1,0 +1,6 @@
+{j[GRd1, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, (n4_)?NonPositive, 
+   (n5_)?Positive, (n6_)?Positive, (n7_)?NonPositive, (n8_)?Positive, 
+   (n9_)?NonPositive, (n10_)?NonPositive, (n11_)?NonPositive] :> 
+  Expand[j[GRd1, n4, n3, n2, n1, n7, n6, n5, n9, n8, 0, n11]/
+    (-j[GRd1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0] - j[GRd1, 0, 0, 0, 0, 0, 0, 
+       0, 0, 0, 0, -1] + aq*j[GRd1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])^n10]}

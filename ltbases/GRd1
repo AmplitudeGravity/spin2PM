@@ -1,0 +1,262 @@
+BasisDirectory[GRd1] = StringDrop[DirectoryName[$Input], -1]
+GRd1 /: BasisSectors[GRd1] := Get[StringJoin[BasisDirectory[GRd1], 
+    "/BasisSectors[GRd1]"]]
+GRd1 /: CurrentState[GRd1] := <|NewDsBasis -> True, GenerateIBP -> True, 
+   AnalyzeSectors -> True, FindSymmetries -> False|>
+GRd1 /: CutDs[GRd1] := {0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0}
+GRd1 /: Definitions[GRd1] := {Hold[MetricTensor[] === d, SetDim[d]], 
+   Hold[VecQ[l1], Declare[l1, Vector]], Hold[VecQ[l2], Declare[l2, Vector]], 
+   Hold[VecQ[a0], Declare[a0, Vector]], Hold[VecQ[p0], Declare[p0, Vector]], 
+   Hold[VecQ[p4], Declare[p4, Vector]], Hold[VecQ[q0], Declare[q0, Vector]], 
+   Hold[TypeOf[a0] === Vector, Declare[a0, Vector]], 
+   Hold[TypeOf[aq] === Number, Declare[aq, Number]], 
+   Hold[TypeOf[p0] === Vector, Declare[p0, Vector]], 
+   Hold[TypeOf[p4] === Vector, Declare[p4, Vector]], 
+   Hold[TypeOf[q0] === Vector, Declare[q0, Vector]], 
+   Hold[TypeOf[s] === Number, Declare[s, Number]], 
+   Hold[TypeOf[sq] === Number, Declare[sq, Number]], 
+   Hold[TypeOf[y] === Number, Declare[y, Number]], 
+   Hold[sp[a0, a0] === s, sp[a0, a0] = s], Hold[sp[p0, p0] === 1, 
+    sp[p0, p0] = 1], Hold[sp[p4, p4] === 1, sp[p4, p4] = 1], 
+   Hold[sp[q0, q0] === sq, sp[q0, q0] = sq], Hold[sp[a0, p0] === 0, 
+    sp[a0, p0] = 0], Hold[sp[a0, p4] === 0, sp[a0, p4] = 0], 
+   Hold[sp[a0, q0] === aq, sp[a0, q0] = aq], Hold[sp[p0, p4] === y, 
+    sp[p0, p4] = y], Hold[sp[p0, q0] === 0, sp[p0, q0] = 0], 
+   Hold[sp[p4, q0] === 0, sp[p4, q0] = 0]}
+GRd1 /: Ds[GRd1] := {sp[l1, p0], sp[l1 + l2, -p0], sp[l1, p4], 
+   sp[l1 + l2, -p4], sp[l1, l1], sp[l2, l2], sp[-l1 - l2 + q0, 
+    -l1 - l2 + q0], sp[-l1 + q0, -l1 + q0], sp[l1 + l2, l1 + l2], sp[a0, l1], 
+   sp[a0, l2]}
+GRd1 /: DsBasisQ[GRd1] := True
+GRd1 /: EMs[GRd1] := {a0, p0, p4, q0}
+GRd1 /: ExtMappedSectors[GRd1] := {}
+GRd1 /: ExtSectorsMappings[GRd1] := {}
+GRd1 /: IBP[GRd1] := Get[StringJoin[BasisDirectory[GRd1], "/IBP[GRd1]"]]
+GRd1 /: Information[GRd1] := (If[ValueQ[GRd1::usage], 
+    Information[GRd1, LongForm -> False]]; 
+   Print[Grid[Partition[Union[Replace[Replace[First /@ UpValues[GRd1] /. 
+          HoldPattern -> HoldForm, 
+         {HoldPattern[HoldForm[(LiteRed`Private`f$_)[GRd1, __]]] :> 
+           HoldForm[LiteRed`Private`f$[GRd1, "\[Ellipsis]"]]}, {1}], 
+        {HoldPattern[LiteRed`Private`x$:HoldForm[(LiteRed`Private`f$_)[GRd1, 
+              ___]]] :> Button[LiteRed`Private`x$, 
+           (SelectionMove[ButtonNotebook[], All, GeneratedCell]; 
+             NotebookDelete[]; Information[Evaluate[LiteRed`Private`x$[[1,
+                0]]], LongForm -> False]; Print[TableForm[Cases[UpValues[
+                  GRd1], HoldPattern[LiteRed`Private`a$_ :> 
+                    LiteRed`Private`b$_] /; MatchQ[LiteRed`Private`a$[[1,0]], 
+                   LiteRed`Private`x$[[1,0]]]] /. HoldPattern -> 
+                 HoldForm]]) & , Appearance -> "Frameless", 
+           BaseStyle -> "InformationLink"]}, {1}]], 5], 
+     DefaultBaseStyle -> "InfoGrid"]])
+GRd1 /: jRules[GRd1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jRules[GRd1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jRules[GRd1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]"]]
+GRd1 /: jsOrder[GRd1] := {"np", "cp", "-ds", "-ns"}
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0]"]]
+GRd1 /: jSymmetries[GRd1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0] := 
+  Get[StringJoin[BasisDirectory[GRd1], 
+    "/jSymmetries[GRd1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0]"]]
+GRd1 /: LI[GRd1] := Get[StringJoin[BasisDirectory[GRd1], "/LI[GRd1]"]]
+GRd1 /: LMs[GRd1] := {l1, l2}
+GRd1 /: MappedSectors[GRd1] := Get[StringJoin[BasisDirectory[GRd1], 
+    "/MappedSectors[GRd1]"]]
+GRd1 /: MIs[GRd1] := Get[StringJoin[BasisDirectory[GRd1], "/MIs[GRd1]"]]
+GRd1 /: NDs[GRd1] := 11
+GRd1 /: NonZeroSectors[GRd1] := Get[StringJoin[BasisDirectory[GRd1], 
+    "/NonZeroSectors[GRd1]"]]
+GRd1 /: Parameters[GRd1] := {aq, d, s, sq, y}
+GRd1 /: PowerShifts[GRd1] := {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+GRd1 /: SectorsMappings[GRd1] := 
+  {js[GRd1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0] -> js[GRd1, 1, 1, 1, 1, 0, 1, 1, 
+     1, 1, 0, 0], js[GRd1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0] -> 
+    js[GRd1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0], 
+   js[GRd1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0] -> js[GRd1, 1, 1, 1, 1, 0, 1, 1, 
+     1, 1, 0, 0], js[GRd1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0], 
+   js[GRd1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0] -> js[GRd1, 1, 1, 1, 1, 0, 1, 1, 
+     0, 1, 0, 0], js[GRd1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0] -> 
+    js[GRd1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0], 
+   js[GRd1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0] -> js[GRd1, 0, 1, 1, 1, 1, 1, 0, 
+     1, 1, 0, 0], js[GRd1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0], 
+   js[GRd1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0] -> js[GRd1, 0, 1, 1, 1, 1, 1, 0, 
+     1, 1, 0, 0], js[GRd1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0], 
+   js[GRd1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0] -> js[GRd1, 0, 1, 1, 1, 0, 1, 1, 
+     1, 1, 0, 0], js[GRd1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0], 
+   js[GRd1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0] -> js[GRd1, 0, 1, 1, 1, 0, 1, 1, 
+     1, 1, 0, 0], js[GRd1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0], 
+   js[GRd1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0] -> js[GRd1, 0, 1, 1, 1, 0, 1, 1, 
+     0, 1, 0, 0], js[GRd1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0], 
+   js[GRd1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0] -> js[GRd1, 0, 1, 1, 1, 0, 1, 0, 
+     1, 1, 0, 0], js[GRd1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0], 
+   js[GRd1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0] -> js[GRd1, 0, 1, 1, 0, 0, 1, 1, 
+     1, 1, 0, 0], js[GRd1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0], 
+   js[GRd1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0] -> js[GRd1, 0, 1, 1, 0, 0, 1, 1, 
+     1, 1, 0, 0], js[GRd1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0] -> 
+    js[GRd1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0], 
+   js[GRd1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0] -> js[GRd1, 0, 1, 1, 0, 0, 1, 1, 
+     0, 1, 0, 0]}
+GRd1 /: SectorsPattern[GRd1] := {__, 0, 0}
+GRd1 /: SimpleSectors[GRd1] := Get[StringJoin[BasisDirectory[GRd1], 
+    "/SimpleSectors[GRd1]"]]
+GRd1 /: SPs[GRd1] := {sp[a0, l1], sp[a0, l2], sp[l1, l1], sp[l1, l2], 
+   sp[l1, p0], sp[l1, p4], sp[l1, q0], sp[l2, l2], sp[l2, p0], sp[l2, p4], 
+   sp[l2, q0]}
+GRd1 /: SR[GRd1] := Get[StringJoin[BasisDirectory[GRd1], "/SR[GRd1]"]]
+GRd1 /: Toj[GRd1] := {sp[a0, l1] -> j[GRd1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 
+     0], sp[a0, l2] -> j[GRd1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1], 
+   sp[l1, l1] -> j[GRd1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0], 
+   sp[l1, l2] -> (-j[GRd1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0] - 
+      j[GRd1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0] + j[GRd1, 0, 0, 0, 0, 0, 0, 
+       0, 0, -1, 0, 0])/2, sp[l1, p0] -> j[GRd1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 
+     0, 0], sp[l1, p4] -> j[GRd1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0], 
+   sp[l1, q0] -> (sq + j[GRd1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0] - 
+      j[GRd1, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0])/2, 
+   sp[l2, l2] -> j[GRd1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0], 
+   sp[l2, p0] -> -j[GRd1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] - 
+     j[GRd1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+   sp[l2, p4] -> -j[GRd1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0] - 
+     j[GRd1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0], 
+   sp[l2, q0] -> (-j[GRd1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0] - 
+      j[GRd1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0] + j[GRd1, 0, 0, 0, 0, 0, 0, 
+       0, -1, 0, 0, 0] + j[GRd1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0])/2}
+GRd1 /: UniqueSectors[GRd1] := Get[StringJoin[BasisDirectory[GRd1], 
+    "/UniqueSectors[GRd1]"]]
+GRd1 /: ZerojRule[GRd1] := LiteRed`Private`jjj:j[GRd1, __] :> 
+   0 /; Module[{LiteRed`Private`jjs = 
+       Rest[List @@ jSector[LiteRed`Private`jjj]]}, 
+     Or @@ (BitOr[LiteRed`Private`jjs, #1] === #1 & ) /@ 
+       {{1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0}, {1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0}, 
+        {1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0}, {1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, 
+        {1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0}, {1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0}, 
+        {1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0}, {1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0}}]
+GRd1 /: ZeroSectors[GRd1] := Get[StringJoin[BasisDirectory[GRd1], 
+    "/ZeroSectors[GRd1]"]]
+GRd1 /: SectorsMappings[GRd1, LiteRed`Private`ns$:(0 | 1)..] := 
+  Cases[SectorsMappings[GRd1], HoldPattern[js[GRd1, LiteRed`Private`ns$] -> 
+     _]]
+GRd1::usage = "2-loop basis with 4 external momenta.\nUse Information[GRd1] \
+to get basis summary.\nThis string can be redefined by setting \
+GRd1::usage=\"\[Ellipsis]\""; Information[GRd1, LongForm -> False]; 
+LiteRed`Private`CheckDefs[GRd1]
+BasisDirectory[GRd1]
